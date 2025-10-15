@@ -2,83 +2,13 @@
 
 A production-ready Event Management REST API built with Node.js, Express, and PostgreSQL using Prisma ORM.
 
+## 🚀 Live Backend
 
-## Tech Stack
+Live API: **[https://surefy-tech-pvt-lmtd.onrender.com](https://surefy-tech-pvt-lmtd.onrender.com)**
 
-- **Node.js** - Runtime environment
-- **Express** - Web framework
-- **PostgreSQL** - Database
-- **Prisma** - ORM for database operations
-- **express-validator** - Input validation
-- **dotenv** - Environment variable management
+---
 
-## Database Schema
-
-```
-┌──────────────┐         ┌─────────────────┐         ┌──────────────┐
-│    User      │         │  Registration   │         │    Event     │
-├──────────────┤         ├─────────────────┤         ├──────────────┤
-│ id (UUID)    │────────<│ userId (UUID)   │>────────│ id (UUID)    │
-│ name         │         │ eventId (UUID)  │         │ title        │
-│ email (uniq) │         │ registeredAt    │         │ dateTime     │
-│ createdAt    │         │                 │         │ location     │
-└──────────────┘         └─────────────────┘         │ capacity     │
-                                                      │ createdAt    │
-                                                      └──────────────┘
-```
-
-## Setup Instructions
-
-### Prerequisites
-
-- Node.js (v18 or higher)
-- PostgreSQL (v14 or higher)
-- npm or yarn
-
-### Installation
-
-1. **Clone or navigate to the project directory:**
-   ```bash
-   
-   ```
-
-2. **Install dependencies:**
-   ```bash
-   npm install
-   ```
-
-3. **Set up environment variables:**
-   ```bash
-   # Copy the example env file
-   copy .env.example .env
-   
-   # Edit .env and update with your PostgreSQL credentials
-   # DATABASE_URL="postgresql://username:password@localhost:5432/event_management?schema=public"
-   ```
-
-4. **Run database migrations:**
-   ```bash
-   npm run db:migrate
-   ```
-   Or push the schema directly:
-   ```bash
-   npm run db:push
-   ```
-
-5. **Start the server:**
-   ```bash
-   # Production
-   npm start
-   
-   # Development (with auto-reload)
-   npm run dev
-   ```
-
-6. **Access the API:**
-   - API: http://localhost:3000/api
-   - Health Check: http://localhost:3000/health
-
-## API Endpoints
+## � API Endpoints
 
 ### 1. Create Event
 **POST** `/api/events`
@@ -116,6 +46,16 @@ Create a new event with capacity validation.
 - Location: 3-200 characters
 - Capacity: 1-1000 (enforced)
 
+**📸 Screenshot:**
+<p align="center">
+  <img src="public/create_event.png" alt="Create Event" width="700"/>
+</p>
+
+**Capacity Limit Validation:**
+<p align="center">
+  <img src="public/create_event_capLimit.png" alt="Create Event Capacity Limit" width="700"/>
+</p>
+
 ---
 
 ### 2. Get Event Details
@@ -146,6 +86,11 @@ Get event details with list of registered users.
   ]
 }
 ```
+
+**📸 Screenshot:**
+<p align="center">
+  <img src="public/get_event.png" alt="Get Event Details" width="700"/>
+</p>
 
 ---
 
@@ -199,6 +144,11 @@ Register a user for an event. Can either use existing userId or create new user.
 - **400**: Cannot register for past events
 - **404**: Event not found / User not found
 
+**📸 Screenshot:**
+<p align="center">
+  <img src="public/user_registration.png" alt="User Registration" width="700"/>
+</p>
+
 ---
 
 ### 4. Cancel Registration
@@ -217,6 +167,11 @@ Cancel a user's registration for an event.
 - **404**: Registration not found (user not registered)
 - **404**: Event not found
 - **404**: User not found
+
+**📸 Screenshot:**
+<p align="center">
+  <img src="public/user_registration_cancelled.png" alt="User Registration Cancelled" width="700"/>
+</p>
 
 ---
 
@@ -252,6 +207,11 @@ List all future events, sorted by date (ascending) then location (alphabetically
 }
 ```
 
+**📸 Screenshot:**
+<p align="center">
+  <img src="public/upcoming_events.png" alt="Upcoming Events" width="700"/>
+</p>
+
 ---
 
 ### 6. Get Event Statistics
@@ -272,7 +232,86 @@ Get registration statistics for an event.
 }
 ```
 
+**📸 Screenshot:**
+<p align="center">
+  <img src="public/event_stats.png" alt="Event Statistics" width="700"/>
+</p>
+
 ---
+
+## Tech Stack
+
+- **Node.js** - Runtime environment
+- **Express** - Web framework
+- **PostgreSQL** - Database
+- **Prisma** - ORM for database operations
+- **express-validator** - Input validation
+- **dotenv** - Environment variable management
+
+## Database Schema
+
+```
+┌──────────────┐         ┌─────────────────┐         ┌──────────────┐
+│    User      │         │  Registration   │         │    Event     │
+├──────────────┤         ├─────────────────┤         ├──────────────┤
+│ id (UUID)    │────────<│ userId (UUID)   │>────────│ id (UUID)    │
+│ name         │         │ eventId (UUID)  │         │ title        │
+│ email (uniq) │         │ registeredAt    │         │ dateTime     │
+│ createdAt    │         │                 │         │ location     │
+└──────────────┘         └─────────────────┘         │ capacity     │
+                                                      │ createdAt    │
+                                                      └──────────────┘
+```
+
+## Setup Instructions
+
+### Prerequisites
+
+- Node.js (v18 or higher)
+- PostgreSQL (v14 or higher)
+- npm or yarn
+
+### Installation
+
+1. **Clone or navigate to the project directory:**
+   ```bash
+   git clone https://github.com/Pratham2703005/Surefy_Tech_Pvt_Lmtd.git
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Set up environment variables:**
+   ```bash
+   # in .env set: PORT=number, DATABASE_URL=postgres_db_url, NODE_ENV=development
+   
+   # Edit .env and update with your PostgreSQL credentials
+   # DATABASE_URL="postgresql://username:password@localhost:5432/event_management?schema=public"
+   ```
+
+4. **Run database migrations:**
+   ```bash
+   npm run db:migrate
+   ```
+   Or push the schema directly:
+   ```bash
+   npm run db:push
+   ```
+
+5. **Start the server:**
+   ```bash
+   # Production
+   npm start
+   
+   # Development (with auto-reload)
+   npm run dev
+   ```
+
+6. **Access the API:**
+   - API: http://localhost:3000/api
+   - Health Check: http://localhost:3000/health
 
 ## Business Logic & Validations
 
@@ -365,53 +404,3 @@ You can test the API using tools like:
 - **cURL** - Command-line testing
 - **Thunder Client** - VS Code extension
 - **REST Client** - VS Code extension
-
-### Example cURL Commands
-
-```bash
-# Create an event
-curl -X POST http://localhost:3000/api/events \
-  -H "Content-Type: application/json" \
-  -d '{
-    "title": "Tech Conference 2025",
-    "dateTime": "2025-12-15T10:00:00.000Z",
-    "location": "San Francisco",
-    "capacity": 500
-  }'
-
-# Get upcoming events
-curl http://localhost:3000/api/events/upcoming
-
-# Register for event
-curl -X POST http://localhost:3000/api/events/{eventId}/register \
-  -H "Content-Type: application/json" \
-  -d '{
-    "userName": "John Doe",
-    "userEmail": "john@example.com"
-  }'
-```
-
-## Production Deployment
-
-1. Set `NODE_ENV=production`
-2. Use a production PostgreSQL database
-3. Enable SSL for database connections
-4. Use environment variables for sensitive data
-5. Implement rate limiting
-6. Add authentication/authorization
-7. Set up logging and monitoring
-8. Use a process manager (PM2, systemd)
-
-## License
-
-ISC
-
-## Author
-
-Your Name
-
----
-
-**Built with ❤️ using Node.js, Express, and PostgreSQL**
-#   S u r e f y _ T e c h _ P v t _ L m t d  
- 
